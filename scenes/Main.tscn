@@ -52,6 +52,7 @@ __meta__ = {
 }
 move_speed = 8
 look_speed = 128
+slowdown_factor = 0.5
 rotation = Vector3( 0, 0, 0 )
 
 [node name="FlyCam2" type="Camera" parent="."]
@@ -74,6 +75,7 @@ __meta__ = {
 }
 move_speed = 8
 look_speed = 128
+slowdown_factor = 0.5
 rotation = Vector3( 0, 180, 0 )
 
 [node name="TestCube" type="TestCube" parent="."]
