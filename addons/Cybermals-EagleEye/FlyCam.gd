@@ -2,8 +2,7 @@ extends Camera
 
 export (float) var move_speed = 8
 export (float) var look_speed = 128
-
-onready var look_vec = get_rotation()
+export (Vector3) var rotation = Vector3()
 
 
 func _ready():
@@ -38,20 +37,19 @@ func _fixed_process(delta):
 		move_vec.y = -1
 		
 	if Input.is_action_pressed("look_left"):
-		look_vec.y += -look_speed * delta
+		rotation.y += -look_speed * delta
 		
 	elif Input.is_action_pressed("look_right"):
-		look_vec.y += look_speed * delta
+		rotation.y += look_speed * delta
 		
 	if Input.is_action_pressed("look_up"):
-		look_vec.x += -look_speed * delta
+		rotation.x += -look_speed * delta
 		
 	elif Input.is_action_pressed("look_down"):
-		look_vec.x += look_speed * delta
+		rotation.x += look_speed * delta
 		
 	#Update movement
-	#set_rotation(get_rotation() + look_vec * look_speed * delta)
 	set_rotation(Vector3())
-	rotate_y(deg2rad(look_vec.y))
-	rotate_x(deg2rad(look_vec.x))
-	set_translation(get_translation() + move_vec.rotated(Vector3(0.0, 1.0, 0.0), deg2rad(look_vec.y)) * move_speed * delta)
+	rotate_y(deg2rad(rotation.y))
+	rotate_x(deg2rad(rotation.x))
+	set_translation(get_translation() + move_vec.rotated(Vector3(0.0, 1.0, 0.0), deg2rad(rotation.y)) * move_speed * delta)
